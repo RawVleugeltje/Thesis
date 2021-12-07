@@ -8,6 +8,7 @@ Created on Thu Dec  2 12:11:01 2021
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
 
 def Weighted_Region(data, mask_3D, land_mask, ar6_all):
     weights = np.cos(np.deg2rad(data.lat))
@@ -128,3 +129,22 @@ def plotting_scatter(data_mean,data,h1,h1_mean,h5_mean,h10_mean,xlabel):
     plt.show()
     
     return
+
+def fit_scatter(data_mean,h1,data_label,unit):
+    X = data_mean.iloc[:,0].values.reshape(-1, 1)
+    Y = h1.iloc[:,0].values.reshape(-1, 1)
+
+    fit = LinearRegression().fit(X, Y)
+
+    x = np.linspace(X.min(),X.max(),45)
+    x = x.reshape(-1,1)
+    Y_pred = fit.predict(x)
+    plt.scatter(X, Y)
+    plt.plot(x, Y_pred,'r--')
+    plt.title(f'{data_label} --- R$^{2}$ = {fit.score(X,Y):.3f}')
+    plt.xlabel(f'{data_label} [{unit}]')
+    plt.ylabel('Heaviness [-]')
+    plt.grid()
+    plt.show()
+    
+    return fit.coef_, fit.intercept_

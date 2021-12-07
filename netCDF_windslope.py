@@ -21,7 +21,6 @@ rho_int = np.abs(wind.Phi100.values - slope.Aspect.values)
 rho = rho_int
 
 for i in range(rho.shape[0]):
-    print(i/721*100)
     for j in range(rho.shape[1]):
         if rho_int[i,j] <= 180:
             rho[i,j] = 1 - rho_int[i,j] / 180

@@ -66,7 +66,7 @@ lon.units = 'degrees'
 lon.long_name = 'longitude'
 
 elevation = ncfile.createVariable('Elevation',np.float64,('lat','lon'))
-elevation.units = 'm'
+elevation.units = 'meter'
 elevation.standard_name = 'Mean elevation in m'
 
 nlats = len(lat_dim); nlons = len(lon_dim)

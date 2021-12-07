@@ -40,6 +40,15 @@ for i in range(12):
 plt.tight_layout()
 plt.show()
 
+#%% Import precipitation
+prec = xr.open_dataset('netCDF/Precipitation.nc')
+
+plt.figure(figsize=(9,5))
+plt.imshow(prec.Prec_mean[:601,:],vmax=3)
+plt.title('Precipitation mean')
+plt.colorbar(orientation='horizontal')
+plt.show()
+
 #%% Import elevation
 elev = xr.open_dataset('netCDF/Elevation.nc')
 

@@ -12,7 +12,7 @@ import ERA5_landsea_mask
 import netCDF4 as nc
 
 #%% Read data
-PrecTemp = xr.open_dataset('Prec_Temp/prectemp.nc')
+PrecTemp = xr.open_dataset('Temp/temp.nc')
 
 lats = PrecTemp.latitude.values
 lons = PrecTemp.longitude.values
